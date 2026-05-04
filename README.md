@@ -593,6 +593,20 @@ When generic Wasp documentation says to run `wasp <command>`, run it inside the 
 docker compose exec web wasp <command>
 ```
 
+### Prisma Studio
+
+To inspect and edit local database records through Prisma Studio, keep the Docker Compose services running and execute:
+
+```sh
+docker compose exec web wasp db studio
+```
+
+After Prisma Studio starts, open it from the host browser:
+
+```text
+http://localhost:5555
+```
+
 ### Expected result
 
 - The Wasp app starts in development mode.
