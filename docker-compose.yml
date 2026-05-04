@@ -3,6 +3,7 @@ services:
     platform: linux/amd64
     build:
       context: .
+    command: sh -c "npm install && exec wasp start"
     depends_on:
       db:
         condition: service_healthy

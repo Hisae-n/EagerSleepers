@@ -8,6 +8,10 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "esModuleInterop": true,
+    "baseUrl": ".",
+    "paths": {
+      "@docs/*": ["docs/*"]
+    },
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
