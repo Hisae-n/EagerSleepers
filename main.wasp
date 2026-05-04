@@ -60,7 +60,12 @@ page EmailVerificationPage {
   component: import { EmailVerification } from "@src/pages/auth",
 }
 
-route TermOfServiceRoute { path: "/term-of-service", to: TermOfServicePage }
+route TermOfServiceRoute { path: "/terms-of-service", to: TermOfServicePage }
 page TermOfServicePage {
   component: import { TermOfServicePage } from "@src/TermOfServicePage"
+}
+
+route PrivacyPolicyRoute { path: "/privacy-policy", to: PrivacyPolicyPage }
+page PrivacyPolicyPage {
+  component: import { PrivacyPolicyPage } from "@src/PrivacyPolicyPage"
 }
