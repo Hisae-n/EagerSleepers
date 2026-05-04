@@ -8,3 +8,7 @@ generator client {
 }
 
 // Add Prisma models here when persistence is introduced.
+
+model User {
+	id Int @id @default(autoincrement())
+}
