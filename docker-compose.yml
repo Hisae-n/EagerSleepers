@@ -7,15 +7,15 @@ services:
       db:
         condition: service_healthy
     environment:
-      REACT_APP_API_URL: http://localhost:3001
-      WASP_WEB_CLIENT_URL: http://localhost:3000
-      WASP_SERVER_URL: http://localhost:3001
-      DATABASE_URL: postgresql://eager_sleepers:eager_sleepers@db:5432/eager_sleepers
-      PORT: 3001
-      CHOKIDAR_USEPOLLING: "true"
+      REACT_APP_API_URL: http://${APP_HOST}:${WEB_SERVER_PORT}
+      WASP_WEB_CLIENT_URL: http://${APP_HOST}:${WEB_CLIENT_PORT}
+      WASP_SERVER_URL: http://${APP_HOST}:${WEB_SERVER_PORT}
+      DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}
+      PORT: ${WEB_SERVER_PORT}
+      CHOKIDAR_USEPOLLING: ${CHOKIDAR_USEPOLLING}
     ports:
-      - "3000:3000"
-      - "3001:3001"
+      - "${WEB_CLIENT_PORT}:${WEB_CLIENT_PORT}"
+      - "${WEB_SERVER_PORT}:${WEB_SERVER_PORT}"
     volumes:
       - .:/app
       - wasp-cache:/root/.cache/wasp
@@ -27,15 +27,15 @@ services:
   db:
     image: postgres:16-bookworm
     environment:
-      POSTGRES_DB: eager_sleepers
-      POSTGRES_USER: eager_sleepers
-      POSTGRES_PASSWORD: eager_sleepers
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     ports:
-      - "5432:5432"
+      - "${POSTGRES_PORT}:5432"
     volumes:
       - postgres-data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U eager_sleepers -d eager_sleepers"]
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
       interval: 5s
       timeout: 5s
       retries: 10

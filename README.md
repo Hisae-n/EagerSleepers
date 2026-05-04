@@ -529,13 +529,14 @@ This bootstrap intentionally does not include Phaser, Socket.IO, authentication,
 - The Wasp CLI is installed inside the Docker image with `npm install -g @wasp.sh/wasp-cli@0.23.0`.
 - The host machine is not expected to have a local `wasp` command.
 - The Compose service runs as `linux/amd64` because the Wasp CLI did not run correctly in the local Docker environment without that platform setting.
-- The Wasp client is exposed on `localhost:3000`; the Wasp server is exposed on `localhost:3001`.
+- The Wasp client and server URLs are derived from `.env` `APP_HOST`, `WEB_CLIENT_PORT`, and `WEB_SERVER_PORT`.
 - Vite is configured with `host: "0.0.0.0"` so the host browser can reach the dev server running inside Docker.
 - The source tree is bind-mounted into the container with `.:/app`, allowing local edits to be picked up by the Dockerized Wasp dev server.
-- `CHOKIDAR_USEPOLLING=true` is enabled to make file watching more reliable through Docker Desktop.
+- Docker Compose reads local configuration from `.env`; `.env.example` documents the required variables.
+- `CHOKIDAR_USEPOLLING` is enabled through `.env` to make file watching more reliable through Docker Desktop.
 - PostgreSQL runs as a separate `db` container.
 - The development database data is stored in the `postgres-data` named Docker volume.
-- Wasp connects to the database through `DATABASE_URL=postgresql://eager_sleepers:eager_sleepers@db:5432/eager_sleepers`.
+- Wasp's `DATABASE_URL` is built in `docker-compose.yml` from `.env` PostgreSQL values.
 - Generated Wasp output and dependencies are kept out of Git via `.gitignore`, `.dockerignore`, and `.waspignore`.
 - `.agents/` is ignored because Wasp Agent Plugin skills are local agent tooling and can be reinstalled when needed.
 
