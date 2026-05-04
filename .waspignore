@@ -1,5 +1,7 @@
 .git
 .agents
+.env
 .wasp
+.vite
 node_modules
 *.pdf

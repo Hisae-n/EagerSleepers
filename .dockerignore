@@ -1,6 +1,7 @@
 .git
 .agents
 .wasp
+.vite
 node_modules
 npm-debug.log
 Dockerfile

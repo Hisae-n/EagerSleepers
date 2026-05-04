@@ -7,6 +7,4 @@ ENV NPM_CONFIG_FUND=false
 
 RUN npm install -g @wasp.sh/wasp-cli@0.23.0
 
-EXPOSE 3000 3001
-
 CMD ["wasp", "start"]

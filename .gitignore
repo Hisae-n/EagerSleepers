@@ -1,6 +1,7 @@
 .env
 .agents/
 .wasp/
+.vite/
 node_modules/
 dev.db
 dev.db-journal
