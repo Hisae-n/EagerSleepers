@@ -17,6 +17,7 @@ services:
     ports:
       - "${WEB_CLIENT_PORT}:${WEB_CLIENT_PORT}"
       - "${WEB_SERVER_PORT}:${WEB_SERVER_PORT}"
+      - "5555:5555" # Prisma Studio
     volumes:
       - .:/app
       - wasp-cache:/root/.cache/wasp
