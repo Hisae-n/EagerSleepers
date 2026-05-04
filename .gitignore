@@ -1,0 +1,14 @@
+.env
+.agents/
+.wasp/
+node_modules/
+dev.db
+dev.db-journal
+dist/
+build/
+npm-debug.log*
+.DS_Store
+
+# TODO: delete
+AGENTS.md
+skills-lock.json

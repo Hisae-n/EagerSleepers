@@ -1,0 +1,15 @@
+app EagerSleepers {
+  wasp: {
+    version: "^0.23"
+  },
+  title: "EagerSleepers",
+  head: [
+    "<link rel='icon' href='/favicon.svg' type='image/svg+xml' />",
+  ]
+}
+
+route RootRoute { path: "/", to: MainPage }
+
+page MainPage {
+  component: import { MainPage } from "@src/MainPage"
+}

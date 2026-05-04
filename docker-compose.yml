@@ -1,0 +1,47 @@
+services:
+  web:
+    platform: linux/amd64
+    build:
+      context: .
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      REACT_APP_API_URL: http://localhost:3001
+      WASP_WEB_CLIENT_URL: http://localhost:3000
+      WASP_SERVER_URL: http://localhost:3001
+      DATABASE_URL: postgresql://eager_sleepers:eager_sleepers@db:5432/eager_sleepers
+      PORT: 3001
+      CHOKIDAR_USEPOLLING: "true"
+    ports:
+      - "3000:3000"
+      - "3001:3001"
+    volumes:
+      - .:/app
+      - wasp-cache:/root/.cache/wasp
+      - wasp-generated:/app/.wasp
+      - wasp-node-modules:/app/node_modules
+    stdin_open: true
+    tty: true
+
+  db:
+    image: postgres:16-bookworm
+    environment:
+      POSTGRES_DB: eager_sleepers
+      POSTGRES_USER: eager_sleepers
+      POSTGRES_PASSWORD: eager_sleepers
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U eager_sleepers -d eager_sleepers"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  wasp-cache:
+  wasp-generated:
+  wasp-node-modules:
+  postgres-data:
