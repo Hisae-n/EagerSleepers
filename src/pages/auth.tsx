@@ -67,15 +67,35 @@ export function PasswordReset() {
   )
 }
 
+
+import { Footer } from "../components/Footer"
+
 // A layout component to center the content
-export function Layout({ children }: { children: React.ReactNode }) {
+{/*export function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div className="h-full w-full bg-white">
-      <div className="flex min-h-[75vh] min-w-full items-center justify-center">
+      <div className="flex min-h-[75vh] min-w-full items-center">
         <div className="h-full w-full max-w-sm bg-white p-5">
-          <div>{children}</div>
+          <div>
+            {children}
+          </div>
+
         </div>
       </div>
+    <Footer />
+    </div>
+  )
+}*/}
+
+export function Layout({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="min-h-screen flex flex-col bg-white">
+
+      <div className="flex-1">
+        {children}
+      </div>
+
+    <Footer />  
     </div>
   )
 }
