@@ -22,6 +22,8 @@ app EagerSleepers {
 			},
 		},
 	},
+	onBeforeSignup: import { onBeforeSignup } from "@src/auth/hooks",
+	onAfterSignup: import { onAfterSignup } from "@src/auth/hooks",
 	onAuthFailedRedirectTo: "/login",
 	onAuthSucceededRedirectTo: "/"
   },
