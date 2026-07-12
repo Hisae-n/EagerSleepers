@@ -391,8 +391,7 @@ Why:
 ### Infrastructure
 
 - Docker / Docker Compose for local orchestration
-- Docker Compose config in `.env`
-- Wasp app config split into `.env.server` and `.env.client`
+- Project configuration centralized in `.env`
 
 Why:
 
@@ -526,8 +525,6 @@ The first runnable environment was bootstrapped with the following scope:
   - `.waspignore`
 - Added local environment and ignore files:
   - `.env.example`
-  - `.env.server.example`
-  - `.env.client.example`
   - `.gitignore`
 - Added Wasp agent support for Codex:
   - `AGENTS.md`
@@ -540,15 +537,14 @@ This bootstrap intentionally does not include Phaser, Socket.IO, authentication,
 - The Wasp CLI is installed inside the Docker image with `npm install -g @wasp.sh/wasp-cli@0.23.0`.
 - The host machine is not expected to have a local `wasp` command.
 - The Compose service runs as `linux/amd64` because the Wasp CLI did not run correctly in the local Docker environment without that platform setting.
-- The Wasp client and server URLs are derived from Docker Compose settings in `.env`.
+- The project uses a single root `.env` file, divided into clearly labeled sections for Docker Compose settings, Wasp server env, and Wasp client env.
 - Vite is configured with `host: "0.0.0.0"` so the host browser can reach the dev server running inside Docker.
 - The source tree is bind-mounted into the container with `.:/app`, allowing local edits to be picked up by the Dockerized Wasp dev server.
-- Docker Compose reads local container settings from `.env`; `.env.example` documents those required variables.
-- Wasp app variables are split by responsibility into `.env.server` and `.env.client`; example files are tracked as `.env.server.example` and `.env.client.example`.
+- Docker Compose reads the root `.env`, and the same file also holds the Wasp env values that are passed into the `web` container.
 - `CHOKIDAR_USEPOLLING` is enabled through `.env` to make file watching more reliable through Docker Desktop.
 - PostgreSQL runs as a separate `db` container.
 - The development database data is stored in the `postgres-data` named Docker volume.
-- Wasp's `DATABASE_URL` is built in `docker-compose.yml` from the Docker Compose PostgreSQL settings, so the root `.env` no longer mixes client/server Wasp variables.
+- Keeping everything in one `.env` is an intentional project choice to reduce setup confusion for a Docker-only development workflow.
 - Generated Wasp output and dependencies are kept out of Git via `.gitignore`, `.dockerignore`, and `.waspignore`.
 - `.agents/` is ignored because Wasp Agent Plugin skills are local agent tooling and can be reinstalled when needed.
 
@@ -562,26 +558,19 @@ Node.js and the Wasp CLI are installed inside the Docker image. They are not req
 
 ### Local setup flow
 
-1. Copy the Docker Compose environment file:
+1. Copy the example environment file:
 
    ```sh
    cp .env.example .env
    ```
 
-2. If you want file-based Wasp env files as well, copy the split examples:
-
-   ```sh
-   cp .env.server.example .env.server
-   cp .env.client.example .env.client
-   ```
-
-3. Build and start the Wasp development container:
+2. Build and start the Wasp development container:
 
    ```sh
    docker compose up --build
    ```
 
-4. Open the default page in Google Chrome:
+3. Open the default page in Google Chrome:
 
    ```text
    http://localhost:3000

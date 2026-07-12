@@ -1,6 +1,4 @@
 .env
-.env.server
-.env.client
 .agents/
 .wasp/
 .vite/
