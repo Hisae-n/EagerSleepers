@@ -10,11 +10,12 @@ generator client {
 // Add Prisma models here when persistence is introduced.
 
 model User {
-  id        Int      @id @default(autoincrement())
-  username  String?  @unique
-  locale    String   @default("ja")
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt @default(now())
+  id          Int       @id @default(autoincrement())
+  username    String?   @unique
+  locale      String    @default("ja")
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt @default(now())
+  tosAgreedAt DateTime?
 
   matchParticipants      MatchParticipant[]
   sentFriendRequests     Friendship[]       @relation("FriendRequester")
