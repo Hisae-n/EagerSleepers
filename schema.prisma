@@ -10,5 +10,134 @@ generator client {
 // Add Prisma models here when persistence is introduced.
 
 model User {
-	id Int @id @default(autoincrement())
+  id        Int      @id @default(autoincrement())
+  username  String?  @unique
+  locale    String   @default("ja")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt @default(now())
+
+  matchParticipants      MatchParticipant[]
+  sentFriendRequests     Friendship[]       @relation("FriendRequester")
+  receivedFriendRequests Friendship[]       @relation("FriendReceiver")
+  sentMessages           ChatMessage[]
+}
+
+model Match {
+  id     Int         @id @default(autoincrement())
+  status MatchStatus @default(WAITING)
+
+  startedAt DateTime?
+  endedAt   DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  participants MatchParticipant[]
+  events       MatchEvent[]
+
+  @@index([status])
+  @@index([createdAt])
+}
+
+model MatchParticipant {
+  id      Int @id @default(autoincrement())
+  matchId Int
+  userId  Int
+
+  match Match @relation(fields: [matchId], references: [id], onDelete: Cascade)
+  user  User  @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  score    Int          @default(0)
+  result   MatchResult?
+  joinedAt DateTime     @default(now())
+  leftAt   DateTime?
+
+  @@unique([matchId, userId])
+  @@index([userId])
+}
+
+model MatchEvent {
+  id        Int            @id @default(autoincrement())
+  matchId   Int
+  actorId   Int?
+  type      MatchEventType
+  payload   Json?
+  createdAt DateTime       @default(now())
+
+  match Match @relation(fields: [matchId], references: [id], onDelete: Cascade)
+
+  @@index([matchId, createdAt])
+}
+
+model Friendship {
+  id          Int              @id @default(autoincrement())
+  requesterId Int
+  receiverId  Int
+  status      FriendshipStatus @default(PENDING)
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+
+  requester User @relation("FriendRequester", fields: [requesterId], references: [id], onDelete: Cascade)
+  receiver  User @relation("FriendReceiver", fields: [receiverId], references: [id], onDelete: Cascade)
+
+  @@unique([requesterId, receiverId])
+  @@index([receiverId, status])
+}
+
+model ChatRoom {
+  id        Int          @id @default(autoincrement())
+  type      ChatRoomType @default(DIRECT)
+  createdAt DateTime     @default(now())
+
+  messages ChatMessage[]
+}
+
+model ChatMessage {
+  id        Int       @id @default(autoincrement())
+  roomId    Int
+  senderId  Int
+  body      String
+  createdAt DateTime  @default(now())
+  editedAt  DateTime?
+  deletedAt DateTime?
+
+  room   ChatRoom @relation(fields: [roomId], references: [id], onDelete: Cascade)
+  sender User     @relation(fields: [senderId], references: [id], onDelete: Cascade)
+
+  @@index([roomId, createdAt])
+}
+
+enum MatchStatus {
+  WAITING
+  PLAYING
+  FINISHED
+  CANCELLED
+}
+
+enum MatchResult {
+  WIN
+  LOSS
+  DRAW
+  DISCONNECTED
+}
+
+enum MatchEventType {
+  SCORE
+  HIT
+  THROW
+  DISCONNECT
+  RECONNECT
+  FINISH
+}
+
+enum FriendshipStatus {
+  PENDING
+  ACCEPTED
+  BLOCKED
+}
+
+enum ChatRoomType {
+  DIRECT
+  MATCH
+  GROUP
 }
