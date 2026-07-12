@@ -41,13 +41,21 @@ Current status:
   - Contribute to implementation and validation
   - Help ensure the product remains understandable for future team members
 
-### Open positions
+### `tyamaoka`
 
-- Additional members: 2 developers to be added
-- Planned expectation:
-  - Share mandatory-part ownership
-  - Own specific modules or feature areas
+- Roles: Developer
+- Responsibilities:
+  - Contribute to frontend implementation and supporting feature work
   - Participate in code review, testing, and documentation
+  - Grow into ownership of a specific module or feature area
+
+### `rdhaibi`
+
+- Roles: Developer
+- Responsibilities:
+  - Contribute to frontend and product-facing feature work
+  - Participate in code review, testing, and documentation
+  - Grow into ownership of a specific module or feature area
 
 ## Project Management
 
@@ -383,7 +391,8 @@ Why:
 ### Infrastructure
 
 - Docker / Docker Compose for local orchestration
-- `.env` for local secrets, with `.env.example` tracked in Git
+- Docker Compose config in `.env`
+- Wasp app config split into `.env.server` and `.env.client`
 
 Why:
 
@@ -517,6 +526,8 @@ The first runnable environment was bootstrapped with the following scope:
   - `.waspignore`
 - Added local environment and ignore files:
   - `.env.example`
+  - `.env.server.example`
+  - `.env.client.example`
   - `.gitignore`
 - Added Wasp agent support for Codex:
   - `AGENTS.md`
@@ -529,14 +540,15 @@ This bootstrap intentionally does not include Phaser, Socket.IO, authentication,
 - The Wasp CLI is installed inside the Docker image with `npm install -g @wasp.sh/wasp-cli@0.23.0`.
 - The host machine is not expected to have a local `wasp` command.
 - The Compose service runs as `linux/amd64` because the Wasp CLI did not run correctly in the local Docker environment without that platform setting.
-- The Wasp client and server URLs are derived from `.env` `APP_HOST`, `WEB_CLIENT_PORT`, and `WEB_SERVER_PORT`.
+- The Wasp client and server URLs are derived from Docker Compose settings in `.env`.
 - Vite is configured with `host: "0.0.0.0"` so the host browser can reach the dev server running inside Docker.
 - The source tree is bind-mounted into the container with `.:/app`, allowing local edits to be picked up by the Dockerized Wasp dev server.
-- Docker Compose reads local configuration from `.env`; `.env.example` documents the required variables.
+- Docker Compose reads local container settings from `.env`; `.env.example` documents those required variables.
+- Wasp app variables are split by responsibility into `.env.server` and `.env.client`; example files are tracked as `.env.server.example` and `.env.client.example`.
 - `CHOKIDAR_USEPOLLING` is enabled through `.env` to make file watching more reliable through Docker Desktop.
 - PostgreSQL runs as a separate `db` container.
 - The development database data is stored in the `postgres-data` named Docker volume.
-- Wasp's `DATABASE_URL` is built in `docker-compose.yml` from `.env` PostgreSQL values.
+- Wasp's `DATABASE_URL` is built in `docker-compose.yml` from the Docker Compose PostgreSQL settings, so the root `.env` no longer mixes client/server Wasp variables.
 - Generated Wasp output and dependencies are kept out of Git via `.gitignore`, `.dockerignore`, and `.waspignore`.
 - `.agents/` is ignored because Wasp Agent Plugin skills are local agent tooling and can be reinstalled when needed.
 
@@ -550,19 +562,26 @@ Node.js and the Wasp CLI are installed inside the Docker image. They are not req
 
 ### Local setup flow
 
-1. Copy the example environment file if you want a local editable env file:
+1. Copy the Docker Compose environment file:
 
    ```sh
    cp .env.example .env
    ```
 
-2. Build and start the Wasp development container:
+2. If you want file-based Wasp env files as well, copy the split examples:
+
+   ```sh
+   cp .env.server.example .env.server
+   cp .env.client.example .env.client
+   ```
+
+3. Build and start the Wasp development container:
 
    ```sh
    docker compose up --build
    ```
 
-3. Open the default page in Google Chrome:
+4. Open the default page in Google Chrome:
 
    ```text
    http://localhost:3000
