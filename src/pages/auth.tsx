@@ -112,6 +112,19 @@ export function Signup() {
             に同意します
           </span>
         </label>
+        <label>
+          <input
+            type="checkbox"
+            checked={hasAgreedToPrivacyPolicy}
+            onChange={(event) => setHasAgreedToPrivacyPolicy(event.target.checked)}
+          />
+          <span>
+            <Link to="/privacy-policy" target="_blank" rel="noreferrer">
+              プライバシーポリシー
+            </Link>
+            に同意します
+          </span>
+        </label>
 
         <button type="submit" disabled={!canSubmit}>
           Sign Up
