@@ -14,6 +14,9 @@ export function MainPage() {
           <p className="summary">
             The Wasp development environment is running through Docker.
           </p>
+          <button type="button" onClick={() => window.location.assign("/room")} className="roomButton">
+				Go to the waiting room !
+		  </button>
         </section>
       </main>
     </Layout>
