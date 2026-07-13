@@ -28,9 +28,10 @@ export function Signup() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [hasAgreedToTerms, setHasAgreedToTerms] = useState(false)
+  const [hasAgreedToPrivacyPolicy, setHasAgreedToPrivacyPolicy] = useState(false)
   const [error, setError] = useState<Error | null>(null)
   const [needsConfirmation, setNeedsConfirmation] = useState(false)
-  const canSubmit = email.trim() !== '' && password !== '' && hasAgreedToTerms
+  const canSubmit = email.trim() !== '' && password !== '' && hasAgreedToTerms && hasAgreedToPrivacyPolicy
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -39,11 +40,15 @@ export function Signup() {
       setError(new Error('利用規約に同意してください。'))
       return
     }
+    if (!hasAgreedToPrivacyPolicy) {
+      setError(new Error('プライバシーポリシーに同意してください。'))
+      return
+    }
 
     setError(null)
 
     try {
-      const signupData = { email, password, tosAgreed: true }
+      const signupData = { email, password, tosAgreed: true, ppAgreed: true }
       await signup(signupData)
       setNeedsConfirmation(true)
     } catch (error) {
