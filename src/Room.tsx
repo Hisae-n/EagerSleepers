@@ -1,5 +1,5 @@
 import "./Main.css";
-import { useAuth, logout } from "wasp/client/auth";
+import { useAuth } from "wasp/client/auth";
 
 export const Room = () => {
     const { data: user } = useAuth();
@@ -12,9 +12,6 @@ export const Room = () => {
                 <p>Welcome to the waiting room : {displayName}</p>
                 <p className="summary">You are ready to start a match.</p>
             </section>
-			<button type="button" onClick={() => logout()}>
-  				Logout
-			</button>
         </main>
     );
 };
