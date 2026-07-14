@@ -1,5 +1,6 @@
 import "./Main.css";
 import { useAuth } from "wasp/client/auth";
+import { LanguageSwitcher } from "./_components/LanguageSwitcher";
 
 export const Room = () => {
     const { data: user } = useAuth();
@@ -11,6 +12,7 @@ export const Room = () => {
             <section className="wait-roomCard">
                 <p>Welcome to the waiting room : {displayName}</p>
                 <p className="summary">You are ready to start a match.</p>
+                <LanguageSwitcher />
             </section>
         </main>
     );

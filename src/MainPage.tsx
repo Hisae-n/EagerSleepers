@@ -2,6 +2,7 @@ import "./Main.css";
 
 import { Header } from "./_components/Header";
 import { Layout } from "./pages/auth";
+import { LanguageSwitcher } from "./_components/LanguageSwitcher";
 
 export function MainPage() {
   return (
@@ -17,6 +18,7 @@ export function MainPage() {
           <button type="button" onClick={() => window.location.assign("/room")} className="roomButton">
 				Go to the waiting room !
 		  </button>
+		  <LanguageSwitcher />
         </section>
       </main>
     </Layout>
