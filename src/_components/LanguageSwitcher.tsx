@@ -3,14 +3,14 @@ import { type Language, useLanguage } from "../LanguageContext";
 
 const languageOptions: Array<{ value: Language; label: string }> = [
 	{ value: "en", label: "English" },
-	{ value: "ja", label: "Japanese" },
-	{ value: "es", label: "Spanish" },
-	{ value: "no", label: "Norwegian" },
-	{ value: "ar", label: "Arabic" },
+	{ value: "ja", label: "日本語" },
+	{ value: "es", label: "Español" },
+	{ value: "no", label: "Norsk" },
+	{ value: "ar", label: "العربية" },
 ];
 
 export function LanguageSwitcher() {
-	const { language, setLanguage } = useLanguage();
+	const { language, setLanguage, t } = useLanguage();
 
 	const handleLanguageChange = (event: ChangeEvent<HTMLSelectElement>) => {
 		setLanguage(event.target.value as Language);
@@ -19,7 +19,7 @@ export function LanguageSwitcher() {
 	return (
 		<div className="languagePicker" aria-label="Language selection">
 			<label htmlFor="language-select" className="languagePickerLabel">
-				Language
+				{t("common.languageLabel")}
 			</label>
 			<select id="language-select" className="languagePickerSelect" value={language} onChange={handleLanguageChange}>
 				{languageOptions.map((option) => (

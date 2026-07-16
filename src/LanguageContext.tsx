@@ -1,10 +1,12 @@
-import React, { createContext, useContext, useEffect, useMemo, useState } from "react";
+import React, { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
+import { resolveTranslation, RTL_LANGUAGES, type TranslationKey } from "./i18n";
 
 export type Language = "en" | "ja" | "es" | "no" | "ar";
 
 interface LanguageContextType {
 	language: Language;
 	setLanguage: (lang: Language) => void;
+	t: (key: TranslationKey) => string;
 }
 
 const LANGUAGE_STORAGE_KEY = "app_language";
@@ -33,12 +35,18 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
 	};
 
 	useEffect(() => {
-		console.log("[LanguageContext] active language:", language);
+		if (typeof document === "undefined") {
+			return;
+		}
+		document.documentElement.lang = language;
+		document.documentElement.dir = RTL_LANGUAGES.has(language) ? "rtl" : "ltr";
 	}, [language]);
 
+	const t = useCallback((key: TranslationKey) => resolveTranslation(language, key), [language]);
+
 	const contextValue = useMemo(
-		() => ({ language, setLanguage }),
-		[language]
+		() => ({ language, setLanguage, t }),
+		[language, t]
 	);
 
 	return (
