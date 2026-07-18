@@ -1,5 +1,7 @@
 import "./Main.css";
 
+import { Link } from "wasp/client/router";
+
 import { Header } from "./_components/Header";
 import { Layout } from "./pages/auth";
 
@@ -14,9 +16,9 @@ export function MainPage() {
           <p className="summary">
             The Wasp development environment is running through Docker.
           </p>
-          <button type="button" onClick={() => window.location.assign("/room")} className="roomButton">
-				Go to the waiting room !
-		  </button>
+          <Link to="/room" className="roomButton">
+            Go to the waiting room!
+          </Link>
         </section>
       </main>
     </Layout>
