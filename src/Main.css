@@ -43,25 +43,3 @@ h1 {
   font-size: 1.125rem;
   line-height: 1.7;
 }
-
-.roomButton {
-  display: flex;
-  width: fit-content;
-  margin: 32px auto 0;
-  align-items: center;
-  justify-content: center;
-  padding: 14px 24px;
-  border: 0;
-  border-radius: 999px;
-  background: #111827;
-  color: #f9fafb;
-  font: inherit;
-  font-weight: 700;
-  text-decoration: none;
-  cursor: pointer;
-  box-shadow: 0 10px 24px rgba(17, 24, 39, 0.15);
-}
-
-.roomButton:hover {
-  background: #1f2937;
-}
