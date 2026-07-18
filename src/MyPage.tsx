@@ -5,8 +5,6 @@ import { Header } from "./_components/Header";
 import { Layout } from "./pages/auth";
 
 export function MyPage({ user }: { user: AuthUser }) {
-  // Get the login ID of the user. This is the ID of the first provider that the user used to log in.
-  // Priority is not guaranteed, so if the user has multiple providers, the login ID may not be the one you expect.
   const loginId = user.getFirstProviderUserId();
 
   return (
