@@ -12,16 +12,16 @@ export function Header() {
 			<img src="/favicon.svg" alt="EagerSleepers logo" />
 			<p>EagerSleepers</p>
 			<Link to="/mypage">{t("header.goToMyPage")}</Link>
+			<LanguageSwitcher />
 			{user ? (
-				<button type="button" onClick={() => logout()} className="roomButton">
+				<button type="button" onClick={() => logout()} className="btn-sm flex flex-col btn btn-soft btn-error mt-2">
 					{t("header.logout")}
 				</button>
 			) : (
-				<Link to="/login" className="roomButton">
+				<Link to="/login" className="btn-md flex-col btn btn-soft btn-info">
 					{t("header.login")}
 				</Link>
-			)}
-			<LanguageSwitcher />
+			)}			
 		</header>
   );
 }

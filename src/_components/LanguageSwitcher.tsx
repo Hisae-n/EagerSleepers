@@ -18,10 +18,15 @@ export function LanguageSwitcher() {
 
 	return (
 		<div className="languagePicker" aria-label="Language selection">
-			<label htmlFor="language-select" className="languagePickerLabel">
+			<label htmlFor="language-select" className="mb-6 mt-4 mr-4">
 				{t("common.languageLabel")}
 			</label>
-			<select className="menu bg-base-200 rounded-box w-56" value={language} onChange={handleLanguageChange}>
+			<select
+				id="language-select"
+				className="select select-bordered w-56"
+				value={language}
+				onChange={handleLanguageChange}
+			>
 				{languageOptions.map((option) => (
 					<option key={option.value} value={option.value}>
 						{option.label}

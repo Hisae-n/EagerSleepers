@@ -18,7 +18,7 @@ export function MainPage() {
 					<h1 className="text-emerald-200 text-4xl">{t("home.title")}</h1>
 					<p className="summary">{t("home.summary")}</p>
 
-					<Link to="/room" className="roomButton">
+					<Link to="/room" className="btn btn-primary flex mt-2">
 						{t("home.goToRoom")}
 					</Link>
 				</section>
