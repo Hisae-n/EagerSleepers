@@ -43,3 +43,46 @@ h1 {
   font-size: 1.125rem;
   line-height: 1.7;
 }
+
+.game-page {
+  padding: 24px;
+}
+
+.game-status {
+  display: grid;
+  gap: 8px;
+  max-width: 420px;
+  margin: 16px 0;
+}
+
+.game-status div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.game-status dt {
+  font-weight: 600;
+}
+
+.game-status dd {
+  margin: 0;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+.phaser-section {
+  margin-top: 24px;
+}
+
+.phaser-stage {
+  overflow: hidden;
+  width: min(100%, 760px);
+  min-height: 420px;
+  border: 2px solid #222222;
+  background: #ffffff;
+}
+
+.phaser-stage canvas {
+  display: block;
+  width: 100%;
+}
