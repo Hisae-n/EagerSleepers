@@ -30,6 +30,9 @@ app EagerSleepers {
   emailSender: {
 	provider: Dummy,
   },
+  client: {
+	rootComponent: import { Root } from "@src/Root",
+  },
 }
 
 route RootRoute { path: "/", to: MainPage }
