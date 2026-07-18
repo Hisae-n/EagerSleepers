@@ -1,5 +1,7 @@
 import "./Main.css";
 
+import { Link } from "wasp/client/router";
+
 import { Header } from "./_components/Header";
 import { Layout } from "./pages/auth";
 
@@ -10,10 +12,13 @@ export function MainPage() {
 	      <Header />
         <section className="intro">
           <p className="eyebrow">Wasp bootstrap</p>
-          <h1>EagerSleepers</h1>
+          <h1 className="text-emerald-200 text-4xl">EagerSleepers</h1>
           <p className="summary">
             The Wasp development environment is running through Docker.
           </p>
+          <Link to="/room" className="roomButton">
+            Go to the waiting room!
+          </Link>
         </section>
       </main>
     </Layout>
