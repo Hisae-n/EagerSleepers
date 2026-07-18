@@ -5,6 +5,7 @@ import {
   ResetPasswordForm,
   signup,
 } from 'wasp/client/auth'
+import '../styles.css'
 import { useState, type FormEvent, type ReactNode } from 'react'
 import { Link } from 'react-router'
 
@@ -174,13 +175,13 @@ import { Footer } from "../components/Footer"
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="min-h-screen flex flex-col bg-white">
+    <div className="min-h-screen flex flex-col bg-base-100 text-base-content" data-theme="forest">
 
       <div className="flex-1">
         {children}
       </div>
 
-    <Footer />  
+      <Footer />  
     </div>
   )
 }
