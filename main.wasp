@@ -75,8 +75,14 @@ page PrivacyPolicyPage {
   component: import { PrivacyPolicyPage } from "@src/PrivacyPolicyPage"
 }
 
+route MyPageRoute { path: "/mypage", to: MyPage }
+page MyPage {
+  component: import { MyPage } from "@src/MyPage",
+  authRequired: true
+}
+
 route RoomRoute { path: "/room", to: Room }
 page Room {
-    component: import { Room } from "@src/Room",
-    authRequired: true
+  component: import { Room } from "@src/Room",
+  authRequired: true
 }

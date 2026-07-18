@@ -1,9 +1,10 @@
 import { wasp } from "wasp/client/vite";
+import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "vite";
 import { fileURLToPath, URL } from "node:url";
 
 export default defineConfig({
-  plugins: [wasp()],
+  plugins: [wasp(), tailwindcss()],
   resolve: {
     alias: {
       "@docs": fileURLToPath(new URL("./docs", import.meta.url)),

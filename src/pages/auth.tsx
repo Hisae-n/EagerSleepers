@@ -5,6 +5,7 @@ import {
   ResetPasswordForm,
   signup,
 } from 'wasp/client/auth'
+import '../styles.css'
 import { useState, type FormEvent, type ReactNode } from 'react'
 import { Link } from 'react-router'
 
@@ -28,9 +29,10 @@ export function Signup() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [hasAgreedToTerms, setHasAgreedToTerms] = useState(false)
+  const [hasAgreedToPrivacyPolicy, setHasAgreedToPrivacyPolicy] = useState(false)
   const [error, setError] = useState<Error | null>(null)
   const [needsConfirmation, setNeedsConfirmation] = useState(false)
-  const canSubmit = email.trim() !== '' && password !== '' && hasAgreedToTerms
+  const canSubmit = email.trim() !== '' && password !== '' && hasAgreedToTerms && hasAgreedToPrivacyPolicy
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -39,11 +41,15 @@ export function Signup() {
       setError(new Error('利用規約に同意してください。'))
       return
     }
+    if (!hasAgreedToPrivacyPolicy) {
+      setError(new Error('プライバシーポリシーに同意してください。'))
+      return
+    }
 
     setError(null)
 
     try {
-      const signupData = { email, password, tosAgreed: true }
+      const signupData = { email, password, tosAgreed: true, ppAgreed: true }
       await signup(signupData)
       setNeedsConfirmation(true)
     } catch (error) {
@@ -103,6 +109,19 @@ export function Signup() {
           <span>
             <Link to="/terms-of-service" target="_blank" rel="noreferrer">
               利用規約
+            </Link>
+            に同意します
+          </span>
+        </label>
+        <label>
+          <input
+            type="checkbox"
+            checked={hasAgreedToPrivacyPolicy}
+            onChange={(event) => setHasAgreedToPrivacyPolicy(event.target.checked)}
+          />
+          <span>
+            <Link to="/privacy-policy" target="_blank" rel="noreferrer">
+              プライバシーポリシー
             </Link>
             に同意します
           </span>
@@ -174,13 +193,13 @@ import { Footer } from "../components/Footer"
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="min-h-screen flex flex-col bg-white">
+    <div className="min-h-screen flex flex-col bg-base-100 text-base-content" data-theme="forest">
 
       <div className="flex-1">
         {children}
       </div>
 
-    <Footer />  
+      <Footer />  
     </div>
   )
 }
