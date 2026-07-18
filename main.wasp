@@ -30,6 +30,10 @@ app EagerSleepers {
   emailSender: {
 	provider: Dummy,
   },
+  webSocket: {
+    fn: import { webSocketFn } from "@src/realtime/webSocket",
+    autoConnect: true,
+  },
 }
 
 route RootRoute { path: "/", to: MainPage }
@@ -70,4 +74,9 @@ page TermOfServicePage {
 route PrivacyPolicyRoute { path: "/privacy-policy", to: PrivacyPolicyPage }
 page PrivacyPolicyPage {
   component: import { PrivacyPolicyPage } from "@src/PrivacyPolicyPage"
+}
+
+route GameRoute { path: "/game", to: GamePage }
+page GamePage {
+  component: import { GamePage } from "@src/game/GamePage"
 }
