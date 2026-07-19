@@ -6,7 +6,7 @@ export const no: DeepPartial<TranslationTree> = {
 		languageLabel: "Språk",
 	},
 	header: {
-		goToMyPage : "My Page",
+		goToMyPage : "Min side",
 		login: "Logg inn",
 		logout: "Logg ut",
 	},
@@ -17,7 +17,7 @@ export const no: DeepPartial<TranslationTree> = {
 		goToRoom: "Gå til venterommet !",
 	},
 	room: {
-		welcomePrefix: "Velkommen til venterommet :",
+		welcomePrefix: "Velkommen til venterommet ",
 		ready: "Du er klar til å starte en kamp.",
 	},
 	MyPage: {
@@ -34,6 +34,7 @@ export const no: DeepPartial<TranslationTree> = {
 		forgotPasswordPrompt: "Glemt passordet ditt?",
 		resetIt: "tilbakestill det",
 		mustAgreeToTermsError: "Du må godta vilkårene.",
+		mustAgreeToPrivacyError: "Vennligst godta personvernerklæringen.",
 		signupFailedError: "Registrering mislyktes.",
 		confirmationEmailSent: "Vi har sendt en bekreftelses-e-post. Aktiver kontoen din via lenken i e-posten.",
 		alreadyHaveAccount: "Jeg har allerede en konto",

@@ -6,7 +6,7 @@ export const es: DeepPartial<TranslationTree> = {
 		languageLabel: "Idioma",
 	},
 	header: {
-		goToMyPage : "My Page",
+		goToMyPage : "Mi página",
 		login: "Iniciar sesión",
 		logout: "Cerrar sesión",
 	},
@@ -17,7 +17,7 @@ export const es: DeepPartial<TranslationTree> = {
 		goToRoom: "Ir a la sala de espera !",
 	},
 	room: {
-		welcomePrefix: "Bienvenido a la sala de espera :",
+		welcomePrefix: "Bienvenido a la sala de espera ",
 		ready: "Estás listo para empezar una partida.",
 	},
 	MyPage: {
@@ -34,6 +34,7 @@ export const es: DeepPartial<TranslationTree> = {
 		forgotPasswordPrompt: "¿Olvidaste tu contraseña?",
 		resetIt: "restablécela",
 		mustAgreeToTermsError: "Debes aceptar los Términos del servicio.",
+		mustAgreeToPrivacyError: "Por favor, acepta la Política de Privacidad.",
 		signupFailedError: "Error al registrarse.",
 		confirmationEmailSent: "Hemos enviado un correo de confirmación. Activa tu cuenta desde el enlace del correo.",
 		alreadyHaveAccount: "Ya tengo una cuenta",

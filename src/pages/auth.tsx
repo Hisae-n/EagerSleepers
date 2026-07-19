@@ -43,11 +43,11 @@ export function Signup() {
     	event.preventDefault()
 
     	if (!hasAgreedToTerms) {
-      		setError(new Error('利用規約に同意してください。'))
+      		setError(new Error(t("auth.mustAgreeToTermsError")))
       		return
     	}
    	 	if (!hasAgreedToPrivacyPolicy) {
-      		setError(new Error('プライバシーポリシーに同意してください。'))
+      		setError(new Error(t("auth.mustAgreeToPrivacyError")))
       		return
     	}
 

@@ -17,7 +17,7 @@ export const ar: DeepPartial<TranslationTree> = {
 		goToRoom: "اذهب إلى غرفة الانتظار !",
 	},
 	room: {
-		welcomePrefix: "مرحبًا بك في غرفة الانتظار :",
+		welcomePrefix: "مرحبًا بك في غرفة الانتظار ",
 		ready: "أنت جاهز لبدء المباراة.",
 	},
 	MyPage: {
@@ -34,6 +34,7 @@ export const ar: DeepPartial<TranslationTree> = {
 		forgotPasswordPrompt: "هل نسيت كلمة المرور؟",
 		resetIt: "أعد تعيينها",
 		mustAgreeToTermsError: "يرجى الموافقة على شروط الخدمة.",
+		mustAgreeToPrivacyError: "يرجى الموافقة على سياسة الخصوصية.",
 		signupFailedError: "فشل إنشاء الحساب.",
 		confirmationEmailSent: "أرسلنا رسالة تأكيد عبر البريد الإلكتروني. يرجى تفعيل حسابك من خلال الرابط في الرسالة.",
 		alreadyHaveAccount: "لدي حساب بالفعل",

@@ -17,7 +17,7 @@ export const ja: DeepPartial<TranslationTree> = {
 		goToRoom: "待機ルームへ進む！",
 	},
 	room: {
-		welcomePrefix: "待機ルームへようこそ：",
+		welcomePrefix: "待機ルームへようこそ ",
 		ready: "試合開始の準備ができています。",
 	},
 	MyPage: {
@@ -34,6 +34,7 @@ export const ja: DeepPartial<TranslationTree> = {
 		forgotPasswordPrompt: "パスワードをお忘れですか？",
 		resetIt: "再設定する",
 		mustAgreeToTermsError: "利用規約に同意してください。",
+		mustAgreeToPrivacyError: "プライバシーポリシーに同意してください。",
 		signupFailedError: "新規登録に失敗しました。",
 		confirmationEmailSent: "確認メールを送信しました。メール内のリンクからアカウントを有効化してください。",
 		alreadyHaveAccount: "すでにアカウントをお持ちです",
@@ -49,5 +50,10 @@ export const ja: DeepPartial<TranslationTree> = {
 	game: {
 		title: "試合中",
 		scoreLabel: "スコア",
+	},
+	results: {
+		title: "結果",
+		winner: "勝者",
+		playAgain: "もう一度プレイする",
 	},
 };

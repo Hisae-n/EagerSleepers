@@ -14,7 +14,7 @@ export const en = {
 		goToRoom: "Go to the waiting room !",
 	},
 	room: {
-		welcomePrefix: "Welcome to the waiting room :",
+		welcomePrefix: "Welcome to the waiting room ",
 		ready: "You are ready to start a match.",
 	},
 	MyPage: {
@@ -31,6 +31,7 @@ export const en = {
 		forgotPasswordPrompt: "Forgot your password?",
 		resetIt: "reset it",
 		mustAgreeToTermsError: "Please agree to the Terms of Service.",
+		mustAgreeToPrivacyError: "Please agree to the Privacy Policy.",
 		signupFailedError: "Sign up failed.",
 		confirmationEmailSent: "We've sent a confirmation email. Please activate your account from the link in the email.",
 		alreadyHaveAccount: "I already have an account",
