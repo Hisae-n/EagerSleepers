@@ -24,7 +24,7 @@ export function MainPage() {
             Go to the waiting room!
           </Link>
           <button
-             class="btn btn-soft btn-error absolute left-6 top-1/4 w-32 h-20 rounded-xl text-base"
+             className="btn btn-soft btn-error absolute left-6 top-1/4 w-32 h-20 rounded-xl text-base"
             onClick={() => setHelpOpen(true)}>
               How to Play
           </button>

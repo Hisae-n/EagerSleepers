@@ -32,13 +32,15 @@ export default function HelpModal({
       className="modal"
       onClose={onClose}
     >
-      <div className="modal-box w-11/12 max-w-6xl h-[90vh]">
-        <HelpContent />
+      <div className="modal-box w-11/12 max-w-6xl h-[90vh] flex flex-col">
+        <div className="flex-1 overflow-y-auto">
+          <HelpContent />
+        </div>
 
-        <div className="modal-action" className="badge badge-outline badge-info">
+        <div className="modal-action justify-center">
           <form method="dialog">
             <button
-              className="btn"
+              className="btn btn-warning btn-soft text-lg"
               onClick={onClose}
             >
               Close
