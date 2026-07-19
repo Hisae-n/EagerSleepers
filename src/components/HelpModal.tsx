@@ -35,13 +35,15 @@ export default function HelpModal({
       <div className="modal-box w-11/12 max-w-6xl h-[90vh]">
         <HelpContent />
 
-        <div className="modal-action">
-          <button
-            className="btn btn-primary"
-            onClick={onClose}
-          >
-            Close
-          </button>
+        <div className="modal-action" className="badge badge-outline badge-info">
+          <form method="dialog">
+            <button
+              className="btn"
+              onClick={onClose}
+            >
+              Close
+            </button>
+          </form>
         </div>
       </div>
 
