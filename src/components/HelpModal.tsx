@@ -32,7 +32,7 @@ export default function HelpModal({
       className="modal"
       onClose={onClose}
     >
-      <div className="modal-box w-11/12 max-w-6xl h-[90vh] flex flex-col">
+      <div className="modal-box w-11/12 max-w-6xl h-[90vh] flex flex-col bg-gray-800/90 backdrop-blur-sm">
         <div className="flex-1 overflow-y-auto">
           <HelpContent />
         </div>
