@@ -40,7 +40,8 @@ export default function HelpModal({
         <div className="modal-action justify-center">
           <form method="dialog">
             <button
-              className="btn btn-warning btn-soft text-lg"
+              className="btn btn-lg btn-warning btn-soft rounded-lg"
+              // className="btn btn-warning btn-soft text-lg"
               onClick={onClose}
             >
               Close
